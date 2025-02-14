@@ -153,10 +153,20 @@
         });
 
         generateButton.addEventListener("click", () => {
-            const selectedStore = storeSelect.value;
-            const command = `sudo teamviewer assignment --id ${selectedStore} --device-alias="$(hostname)"`;
-            outputDiv.textContent = command;
-            outputDiv.style.display = "block";
+        const selectedStore = storeSelect.value;
+
+        // Comandos
+        const linuxCommand = `sudo teamviewer assignment --id ${selectedStore} --device-alias="$(hostname)"`;
+        const windowsCommand = `"C:\\Program Files\\Tvh\\TeamViewer.exe" assignment --id ${selectedStore} --device-alias=%COMPUTERNAME%`;
+
+        // Exibir os comandos com títulos maiores
+        outputDiv.innerHTML = `
+        <p><strong style="font-size: 18px;">Windows:</strong></p>
+        <div style="white-space: pre-wrap; word-wrap: break-word;"><code>${windowsCommand}</code></div>
+        <p><strong style="font-size: 18px;">Linux:</strong></p>
+        <div style="white-space: pre-wrap; word-wrap: break-word;"><code>${linuxCommand}</code></div>
+        `;
+        outputDiv.style.display = "block";
         });
     </script>
 </body>
